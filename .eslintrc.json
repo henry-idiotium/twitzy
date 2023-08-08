@@ -1,0 +1,79 @@
+{
+  "rules": {
+    "no-undef": "off",
+    "no-unused-vars": "off",
+
+    "@typescript-eslint/no-unused-vars": "warn",
+    "@typescript-eslint/no-var-requires": "off",
+    "@typescript-eslint/no-empty-interface": "off",
+    "@typescript-eslint/no-floating-promises": "off",
+    "@typescript-eslint/no-non-null-assertion": "warn",
+    "@typescript-eslint/unbound-method": "off",
+    "@typescript-eslint/no-misused-promises": ["error", { "checksVoidReturn": false }],
+
+    "import/no-unresolved": "off",
+    "import/no-named-as-default-member": "off",
+    "import/no-named-as-default": "off",
+    "import/default": "off",
+    "import/newline-after-import": ["warn", { "count": 1 }],
+    "import/order": [
+      "warn",
+      {
+        "alphabetize": { "order": "desc", "caseInsensitive": true },
+        "warnOnUnassignedImports": true,
+        "newlines-between": "always",
+        "groups": [
+          "index",
+          ["parent", "sibling"],
+          "internal",
+          "external",
+          "builtin",
+          "object",
+          "type"
+        ]
+      }
+    ],
+
+    "react/display-name": "off",
+    "react/no-children-prop": "off",
+    "react/react-in-jsx-scope": "off",
+    "react/jsx-no-undef": "off",
+    "react/jsx-sort-props": [
+      "warn",
+      {
+        "reservedFirst": true,
+        "shorthandFirst": true,
+        "callbacksLast": true,
+        "multiline": "last",
+        "ignoreCase": true,
+        "noSortAlphabetically": true
+      }
+    ]
+  },
+  "plugins": ["@typescript-eslint", "prettier", "import"],
+  "extends": [
+    "next/core-web-vitals",
+    "plugin:import/typescript",
+    "plugin:import/recommended",
+    "plugin:react/recommended",
+    "plugin:@typescript-eslint/recommended-requiring-type-checking",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended",
+    "eslint:recommended",
+    "prettier"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": { "project": "tsconfig.json" },
+  "settings": {
+    "import/parsers": { "@typescript-eslint/parser": [".ts", ".tsx"] },
+    "import/resolver": { "typescript": {} }
+  },
+  "ignorePatterns": [
+    "node_modules",
+    "**/*.stories.ts",
+    "**/*.stories.tsx",
+    "*.*js",
+    "coverage",
+    "dist"
+  ]
+}
