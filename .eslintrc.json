@@ -2,7 +2,9 @@
   "rules": {
     "no-undef": "off",
     "no-unused-vars": "off",
+    "eqeqeq": ["warn", "smart"],
 
+    "@typescript-eslint/no-explicit-any": "warn",
     "@typescript-eslint/no-unused-vars": "warn",
     "@typescript-eslint/no-var-requires": "off",
     "@typescript-eslint/no-empty-interface": "off",
@@ -23,17 +25,18 @@
         "warnOnUnassignedImports": true,
         "newlines-between": "always",
         "groups": [
-          "index",
           ["parent", "sibling"],
-          "internal",
-          "external",
           "builtin",
-          "object",
-          "type"
+          "external",
+          "internal",
+          "index",
+          "type",
+          "object"
         ]
       }
     ],
 
+    "react-hooks/exhaustive-deps": "off",
     "react/display-name": "off",
     "react/no-children-prop": "off",
     "react/react-in-jsx-scope": "off",
@@ -48,32 +51,39 @@
         "ignoreCase": true,
         "noSortAlphabetically": true
       }
-    ]
+    ],
+
+    "@tanstack/query/exhaustive-deps": "warn",
+    "@tanstack/query/prefer-query-object-syntax": "warn"
   },
-  "plugins": ["@typescript-eslint", "prettier", "import"],
+
+  "plugins": ["@typescript-eslint", "prettier", "import", "@tanstack/query"],
   "extends": [
     "next/core-web-vitals",
+    "prettier",
+    "eslint:recommended",
     "plugin:import/typescript",
     "plugin:import/recommended",
     "plugin:react/recommended",
     "plugin:@typescript-eslint/recommended-requiring-type-checking",
     "plugin:@typescript-eslint/eslint-recommended",
     "plugin:@typescript-eslint/recommended",
-    "eslint:recommended",
-    "prettier"
+    "plugin:@tanstack/eslint-plugin-query/recommended"
   ],
+
   "parser": "@typescript-eslint/parser",
   "parserOptions": { "project": "tsconfig.json" },
   "settings": {
     "import/parsers": { "@typescript-eslint/parser": [".ts", ".tsx"] },
     "import/resolver": { "typescript": {} }
   },
+
   "ignorePatterns": [
     "node_modules",
+    "coverage",
+    "dist",
     "**/*.stories.ts",
     "**/*.stories.tsx",
-    "*.*js",
-    "coverage",
-    "dist"
+    "*.*js"
   ]
 }

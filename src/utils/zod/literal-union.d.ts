@@ -1,5 +1,6 @@
 import { z } from 'zod';
 
+/** Syntactic sugar wrapper for the default zod union. */
 export function literalUnion<const Literals extends readonly string[]>(
   ...literals: Literals
 ): z.ZodUnion<ExtractZodLiteral<Literals>>;
