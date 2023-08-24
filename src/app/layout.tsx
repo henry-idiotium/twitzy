@@ -1,5 +1,5 @@
-import '../(styles)/index.css';
 import styles from './page.module.css';
+import './(styles)/index.css';
 import ReactQueryProvider from './(providers)';
 
 import Image from 'next/image';
