@@ -1,7 +1,10 @@
 # Libraries
 
 **Design**:
-[Figma](https://www.figma.com/file/ACL6YK2Hmdjq4jGk7hH07g/Twitzy?type=design&node-id=0%3A1&mode=design&t=Z61EcatZ4EHNu68U-1)
+
+- [Figma component](https://www.figma.com/file/ACL6YK2Hmdjq4jGk7hH07g/Twitzy?type=design&node-id=0%3A1&mode=design&t=Z61EcatZ4EHNu68U-1)
+- [Figma Typography](https://www.figma.com/file/ACL6YK2Hmdjq4jGk7hH07g/Twitzy?type=design&node-id=21%3A63&mode=design&t=Z61EcatZ4EHNu68U-1)
+- [Figma Color](https://www.figma.com/file/ACL6YK2Hmdjq4jGk7hH07g/Twitzy?type=design&node-id=11%3A36&mode=design&t=Z61EcatZ4EHNu68U-1)
 
 **Client side**:
 
