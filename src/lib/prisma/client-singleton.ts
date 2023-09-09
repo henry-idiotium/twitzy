@@ -1,4 +1,4 @@
-import { Prisma, PrismaClient } from '@prisma/client';
+import { Prisma, PrismaClient } from '@/types';
 
 // Set default prisma logs. More logs in debug mode.
 const logOptions: Prisma.LogLevel[] = process.env.DEV
