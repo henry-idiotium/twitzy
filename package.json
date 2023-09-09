@@ -2,17 +2,17 @@
   "name": "twitzy",
   "private": true,
   "scripts": {
-    "dev": "pnpm __ next dev",
-    "build": "pnpm __ next build",
-    "start": "pnpm __ next start",
+    "dev": "doppler run next dev",
+    "build": "doppler run next build",
+    "start": "doppler run next start",
     "lint": "next lint",
-    "prisma": "prisma studio",
-    "prisma:gen": "pnpm __ prisma generate",
-    "prisma:mig": "pnpm __ prisma migrate dev --skip-generate",
-    "supa:dev": "supabase start",
-    "supa:stop": "supabase stop",
-    "supa:types": "bash tools/supabase-gen-types.sh",
-    "__": "bash tools/pn.sh"
+    "type:gen": "pnpm sp:gen-type && pnpm prisma:gen-type",
+    "prisma:studio": "doppler run prisma studio",
+    "prisma:gen-type": "doppler run prisma generate",
+    "prisma:migration": "doppler run 'prisma migrate dev --skip-generate'",
+    "sp:start": "supabase start",
+    "sp:stop": "supabase stop",
+    "sp:gen-type": "doppler run --command \"supabase gen types typescript --local --debug > src/types/database.ts\""
   },
   "dependencies": {
     "@hookform/resolvers": "^3.3.0",

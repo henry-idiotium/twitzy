@@ -6,14 +6,15 @@ datasource db {
 }
 
 generator client {
-  provider      = "prisma-client-js"
-  binaryTargets = ["native"]
+  provider = "prisma-client-js"
+  output   = "../src/types/prisma-client"
+  //binaryTargets = ["native"]
 }
 
 // Generate better entity model than "prisma-client-js"
 generator zod {
   provider                         = "npx zod-prisma-types -pm pnpm"
-  output                           = "../src/types/database/entities"
+  output                           = "../src/types/zod-entities"
   createModelTypes                 = true
   coerceDate                       = true
   writeNullishInModelTypes         = true

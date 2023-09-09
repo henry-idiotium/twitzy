@@ -1,0 +1,140 @@
+//#region HEAD
+datasource db {
+  provider  = "postgresql"
+  url       = env("DB_URL")
+  directUrl = env("DB_DIRECT_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/types/prisma-client"
+  //binaryTargets = ["native"]
+}
+
+// Generate better entity model than "prisma-client-js"
+generator zod {
+  provider                         = "npx zod-prisma-types -pm pnpm"
+  output                           = "../src/types/zod-entities"
+  createModelTypes                 = true
+  coerceDate                       = true
+  writeNullishInModelTypes         = true
+  createOptionalDefaultValuesTypes = false
+  createRelationValuesTypes        = false
+  createInputTypes                 = false
+  addIncludeType                   = false
+  addSelectType                    = false
+  createPartialTypes               = false
+  addInputTypeValidation           = false
+  validateWhereUniqueInput         = false
+  useDefaultValidators             = false
+}
+
+//#endregion
+
+model Profile {
+  id String @id @db.Uuid ///@zod.string.uuid()
+
+  name  String
+  alias String  @unique
+  image String?
+
+  friendOnes               Friendship[]              @relation("userOne") @ignore
+  friendTwos               Friendship[]              @relation("userTwo") @ignore
+  addressees               FriendRequest[]           @relation("addressee") @ignore
+  requesters               FriendRequest[]           @relation("requester") @ignore
+  message                  Message[]                 @ignore
+  messageSeenLog           MessageSeenLogs[]         @ignore
+  conversationParticipants ConversationParticipant[]
+}
+
+model Friendship {
+  userOneId String @map("user_one_id") @db.Uuid ///@zod.string.uuid()
+  userTwoId String @map("user_two_id") @db.Uuid ///@zod.string.uuid()
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  userOne Profile @relation("userOne", fields: [userOneId], references: [id], onDelete: Cascade)
+  userTwo Profile @relation("userTwo", fields: [userTwoId], references: [id], onDelete: Cascade)
+
+  @@id([userOneId, userTwoId])
+}
+
+enum FriendRequestStatus {
+  pending // pending and awaiting approval from the recipient user.
+  blocked // has been blocked by either the sender or the recipient, preventing further communication.
+}
+
+model FriendRequest {
+  id Int @id @default(autoincrement())
+
+  requesterId String              @map("requester_id") @db.Uuid ///@zod.string.uuid()
+  addresseeId String              @map("addressee_id") @db.Uuid ///@zod.string.uuid()
+  status      FriendRequestStatus
+  createdAt   DateTime            @default(now()) @map("created_at")
+  updatedAt   DateTime            @updatedAt @map("updated_at")
+
+  requester Profile @relation("requester", fields: [requesterId], references: [id], onDelete: Cascade)
+  addressee Profile @relation("addressee", fields: [addresseeId], references: [id], onDelete: Cascade)
+}
+
+enum ConversationType {
+  group
+  pair
+}
+
+model Conversations {
+  id String @id @default(uuid()) @db.Uuid ///@zod.string.uuid()
+
+  type      ConversationType
+  owner     String?
+  theme     String?
+  emoji     String?
+  nickName  String?
+  createdAt DateTime         @default(now()) @map("created_at")
+  updatedAt DateTime         @updatedAt @map("updated_at")
+
+  messageSeenLogs MessageSeenLogs[]
+  messages        Message[]
+  participants    ConversationParticipant[]
+}
+
+model ConversationParticipant {
+  userId         String @db.Uuid ///@zod.string.uuid()
+  conversationId String @db.Uuid ///@zod.string.uuid()
+
+  user         Profile       @relation(fields: [userId], references: [id])
+  conversation Conversations @relation(fields: [conversationId], references: [id])
+
+  @@id([userId, conversationId])
+}
+
+model Message {
+  id String @id @default(uuid()) @db.Uuid ///@zod.string.uuid()
+
+  conversationId String   @db.Uuid ///@zod.string.uuid()
+  content        String /// @zod.string.min(1).max(2000)
+  fromId         String   @db.Uuid ///@zod.string.uuid()
+  isEdited       Boolean  @default(false)
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  from Profile @relation(fields: [fromId], references: [id], onDelete: NoAction)
+
+  conversation   Conversations     @relation(fields: [conversationId], references: [id], onDelete: Cascade) @ignore
+  messageSeenLog MessageSeenLogs[] @ignore
+}
+
+model MessageSeenLogs {
+  conversationId String @db.Uuid ///@zod.string.uuid()
+  userId         String @db.Uuid ///@zod.string.uuid()
+  messageId      String @db.Uuid ///@zod.string.uuid()
+
+  updatedAt DateTime @updatedAt
+
+  message      Message       @relation(fields: [messageId], references: [id], onDelete: Cascade)
+  users        Profile       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  conversation Conversations @relation(fields: [conversationId], references: [id], onDelete: Cascade)
+
+  @@id([conversationId, userId, messageId])
+}
