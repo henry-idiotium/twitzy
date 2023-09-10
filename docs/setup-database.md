@@ -2,6 +2,7 @@
 
 - Docker: CI/CD tool
 - Doppler: Cloud env manager
+- Bun: NodeJs alternative
 
 # Steps
 
@@ -9,7 +10,7 @@
 2. Startup/setup local supabase.
 
 ```bash
-pnpm sp:dev
+bun sp:dev
 ```
 
 3. Apply prisma current migrations to local DB
@@ -17,5 +18,11 @@ pnpm sp:dev
 > [NOTE] Note: Run command bellow on repo fresh start, **NOT** while dev.
 
 ```bash
-pnpm exec supabase db reset && pnpm prisma:migration
+bunx supabase db reset && bun pm:mig
+```
+
+or full command,
+
+```bash
+bunx supabase db reset && doppler run "bunx prisma migrate dev --skip-generate"
 ```
