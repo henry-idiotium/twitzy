@@ -15,6 +15,7 @@ generator client {
 generator zod {
   provider                         = "npx zod-prisma-types -pm pnpm"
   output                           = "../src/types/zod-entities"
+  prismaClientPath                 = "../prisma-client"
   createModelTypes                 = true
   coerceDate                       = true
   writeNullishInModelTypes         = true

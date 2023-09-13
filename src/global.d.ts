@@ -2,7 +2,8 @@
 import '@total-typescript/ts-reset';
 
 declare global {
-  type GenericObject<Type = unknown> = object & Record<string | number, Type>;
+  /** Generic Object/Record/Dictionary */
+  type GenDict<Type = unknown> = object & Record<string | number, Type>;
 
   type Mutable<Type> = { -readonly [Key in keyof Type]-?: Type[Key] };
 

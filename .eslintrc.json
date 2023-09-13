@@ -22,7 +22,6 @@
       "warn",
       {
         "alphabetize": { "order": "desc", "caseInsensitive": true },
-        "warnOnUnassignedImports": true,
         "newlines-between": "always",
         "groups": [
           ["parent", "sibling"],

@@ -18,11 +18,11 @@ bun sp:dev
 > [NOTE] Note: Run command bellow on repo fresh start, **NOT** while dev.
 
 ```bash
-bunx supabase db reset && bun pm:mig
+bun pm:mig
 ```
 
 or full command,
 
 ```bash
-bunx supabase db reset && doppler run "bunx prisma migrate dev --skip-generate"
+doppler run "bunx prisma migrate dev --skip-generate"
 ```

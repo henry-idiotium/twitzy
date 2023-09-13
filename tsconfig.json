@@ -1,7 +1,6 @@
 {
   "compilerOptions": {
     "baseUrl": ".",
-    "rootDir": "src",
     "target": "ES2018",
     "jsx": "preserve",
     "lib": ["DOM", "DOM.Iterable", "ESNext"],
