@@ -1,4 +1,4 @@
-import { GlobalStyle, ThemeProvider } from './global.css';
+import { ThemeProvider, GlobalStyle } from './(styles)';
 
 import { Inter } from 'next/font/google';
 import { Metadata } from 'next';

@@ -1,10 +1,4 @@
-'use client';
-
-import '@/utils/styles/reset.css';
-
-import * as styled from 'styled-components';
-
-const { style, theme } = createCSSVars({
+export const { cssVariables, theme } = createCSSVars({
   background: ['0 0% 100%', '0 0% 3.9%'],
   foreground: ['0 0% 3.9%', '0 0% 98%'],
 
@@ -36,21 +30,6 @@ const { style, theme } = createCSSVars({
   radius: ['0.5rem'],
 });
 
-export const ThemeProvider = ({ children }: React.PropsWithChildren) => {
-  return <styled.ThemeProvider theme={theme}>{children}</styled.ThemeProvider>;
-};
-
-export const GlobalStyle = styled.createGlobalStyle`
-  ${style}
-  * {
-    border-color: hsl(var(--border));
-  }
-  body {
-    background-color: hsl(var(--background));
-    color: hsl(var(--foreground));
-  }
-`;
-
 // ------------------------
 // -- helper
 function createCSSVars<T extends Record<string, [root: string, dark?: string]>>(schema: T) {
@@ -64,8 +43,8 @@ function createCSSVars<T extends Record<string, [root: string, dark?: string]>>(
     darkCSSVars += `${cssVar}: ${dark ?? root};`;
   }
   return {
-    theme: theme as { [K in keyof T]: K extends string ? `var(${K})` : K },
-    style: `
+    theme: theme as { [K in keyof T]: K extends string ? `var(--${K})` : K },
+    cssVariables: `
       :root { ${rootCSSVars} }
       .dark { ${darkCSSVars} }
     `,

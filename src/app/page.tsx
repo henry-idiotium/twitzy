@@ -1,5 +1,16 @@
-// NOTE: home redirect logic is in middleware
+function MainArea() {
+  return <main>hello world!</main>;
+}
+
+function SideArea() {
+  return <aside></aside>;
+}
 
 export default function Root() {
-  return <h1>This is public root route!!</h1>;
+  return (
+    <>
+      <MainArea />
+      <SideArea />
+    </>
+  );
 }
