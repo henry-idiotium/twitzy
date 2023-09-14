@@ -50,13 +50,10 @@
         "ignoreCase": true,
         "noSortAlphabetically": true
       }
-    ],
-
-    "@tanstack/query/exhaustive-deps": "warn",
-    "@tanstack/query/prefer-query-object-syntax": "warn"
+    ]
   },
 
-  "plugins": ["@typescript-eslint", "prettier", "import", "@tanstack/query"],
+  "plugins": ["@typescript-eslint", "prettier", "import"],
   "extends": [
     "next/core-web-vitals",
     "prettier",
@@ -66,8 +63,7 @@
     "plugin:react/recommended",
     "plugin:@typescript-eslint/recommended-requiring-type-checking",
     "plugin:@typescript-eslint/eslint-recommended",
-    "plugin:@typescript-eslint/recommended",
-    "plugin:@tanstack/eslint-plugin-query/recommended"
+    "plugin:@typescript-eslint/recommended"
   ],
 
   "parser": "@typescript-eslint/parser",
