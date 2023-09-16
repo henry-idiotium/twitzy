@@ -1,8 +1,11 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {
+module.exports = {
   reactStrictMode: true,
   experimental: {
     serverActions: true,
+  },
+  compiler: {
+    styledComponents: true,
   },
   env: {
     DEV: process.env.NODE_ENV === 'development',
@@ -10,5 +13,3 @@ const nextConfig = {
     TEST: process.env.NODE_ENV === 'test',
   },
 };
-
-module.exports = nextConfig;

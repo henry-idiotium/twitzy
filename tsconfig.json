@@ -1,7 +1,6 @@
 {
   "compilerOptions": {
     "baseUrl": ".",
-    "rootDir": "src",
     "target": "ES2018",
     "jsx": "preserve",
     "lib": ["DOM", "DOM.Iterable", "ESNext"],
@@ -17,11 +16,12 @@
     "isolatedModules": true,
     "resolveJsonModule": true,
     "forceConsistentCasingInFileNames": true,
+    "experimentalDecorators": true,
+    "outDir": ".dist",
     "paths": { "@/*": ["src/*"] },
     "plugins": [{ "name": "next" }]
   },
 
-  "exclude": ["node_modules", ".next"],
   "include": [
     "next-env.d.ts",
     "src/**/*.js",
@@ -30,5 +30,25 @@
     "src/**/*.d.ts",
     ".next/types/src/**/*.ts",
     ".next/types/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    ".next",
+    "src/**/*.spec.ts",
+    "src/**/*.spec.js",
+    "src/**/*.spec.tsx",
+    "src/**/*.spec.jsx",
+    "src/**/*.test.ts",
+    "src/**/*.test.tsx",
+    "src/**/*.test.js",
+    "src/**/*.test.jsx",
+    "**/*.stories.ts",
+    "**/*.stories.js",
+    "**/*.stories.jsx",
+    "**/*.stories.tsx",
+    "**/*.cy.ts",
+    "**/*.cy.js",
+    "**/*.cy.tsx",
+    "**/*.cy.jsx"
   ]
 }
