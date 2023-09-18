@@ -1,3 +1,7 @@
-/dist
-/coverage
+.yarn
+.vscode
+.next
+dist
+node_modules
+coverage
 src/styles/reset.css

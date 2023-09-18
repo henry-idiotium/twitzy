@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import tw, { styled, screen } from 'twin.macro';
 
 import { THEME } from '@/styles';
 
@@ -21,6 +21,10 @@ export const Wrapper = styled.div`
 
   overflow: hidden;
   display: grid;
+
+  ${screen`sm`(tw`
+      placeholder:(accent-amber-100 hover:bg-black)
+  `)}
 
   @media ${THEME.SCREENS.XL} {
     grid-template-columns: 400px 1fr;

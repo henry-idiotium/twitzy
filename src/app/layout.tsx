@@ -1,10 +1,7 @@
-import { Container, MainSection, SideSection, Wrapper } from './layout.css';
-
 import { Inter } from 'next/font/google';
 import { Metadata } from 'next';
-
-import { GlobalStyle } from '@/styles';
-import { Sidebar } from '@/components';
+import { GlobalStyles } from '@/styles';
+import { StyledComponentsRegistry } from '@/lib/styled-component/registry';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -16,10 +13,12 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: React.PropsWithChildren) {
   return (
     <html lang="en">
-      <GlobalStyle />
-
       <body className={inter.className}>
-        <Container>
+        <StyledComponentsRegistry>
+          <GlobalStyles />
+          {children}
+
+          {/* <Container>
           <Wrapper>
             <SideSection>
               <Sidebar />
@@ -30,7 +29,8 @@ export default function RootLayout({ children }: React.PropsWithChildren) {
               {children}
             </MainSection>
           </Wrapper>
-        </Container>
+        </Container> */}
+        </StyledComponentsRegistry>
       </body>
     </html>
   );
