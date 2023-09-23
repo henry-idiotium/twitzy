@@ -5,7 +5,7 @@
     "jsx": "preserve",
     "lib": ["DOM", "DOM.Iterable", "ESNext"],
     "module": "ESNext",
-    "moduleResolution": "bundler",
+    "moduleResolution": "Bundler",
     "noEmit": true,
     "incremental": true,
 
@@ -29,7 +29,8 @@
     "src/**/*.tsx",
     "src/**/*.d.ts",
     ".next/types/src/**/*.ts",
-    ".next/types/**/*.ts"
+    ".next/types/**/*.ts",
+    "tailwind.config.ts"
   ],
   "exclude": [
     "node_modules",

@@ -1,4 +1,6 @@
-export const cssVariables = createCSSVars({
+import { createCSSVariables, createThemeCSSVariables } from './helpers';
+
+export const [colorCSSVarStr, colorTailwindConfig] = createThemeCSSVariables({
   background: ['0 0% 100%', '0 0% 3.9%'],
   foreground: ['0 0% 3.9%', '0 0% 98%'],
 
@@ -26,26 +28,8 @@ export const cssVariables = createCSSVars({
   border: ['0 0% 89.8%', '0 0% 14.9%'],
   input: ['0 0% 89.8%', '0 0% 14.9%'],
   ring: ['0 0% 3.9%', '0 0% 83.1%'],
-
-  radius: ['0.5rem'],
 });
 
-// ------------------------
-// -- helper
-function createCSSVars<ColorSchema extends Record<string, [root: string, dark?: string]>>(
-  schema: ColorSchema,
-) {
-  let rootCSSVars = '';
-  let darkCSSVars = '';
-
-  for (const [name, [root, dark]] of Object.entries(schema)) {
-    const cssVar = `--${name}`;
-    rootCSSVars += `${cssVar}: ${root};`;
-    if (dark) darkCSSVars += `${cssVar}: ${dark};`;
-  }
-
-  return {
-    rootCSSVars,
-    darkCSSVars,
-  };
-}
+export const [radiusCSSVarStr, radiusTailwindConfig] = createCSSVariables({
+  radius: '0.5rem',
+});

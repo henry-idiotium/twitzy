@@ -1,4 +1,6 @@
-// NOTE: order matter if modules use each other
 export * from './prisma';
 export * from './wretch';
-export * from './heroicons';
+export * from './styled-component';
+export * from './jotai';
+export * from './fontawesome';
+export * from './classname';

@@ -30,12 +30,12 @@ module.exports = function withTwin(nextConfig) {
             options: {
               sourceMaps: dev,
               plugins: [
-                require.resolve('babel-plugin-macros'),
+                [require.resolve('babel-plugin-macros'), { twin: { preset: 'styled-components' } }],
+                [require.resolve('@babel/plugin-syntax-typescript'), { isTSX: true }],
                 [
                   require.resolve('babel-plugin-styled-components'),
-                  { ssr: true, displayName: true },
+                  { ssr: true, displayName: false, preprocess: false },
                 ],
-                [require.resolve('@babel/plugin-syntax-typescript'), { isTSX: true }],
               ],
             },
           },

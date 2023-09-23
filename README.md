@@ -1,25 +1,6 @@
-# Libraries
+# Designs
 
-**Design**:
-
-- [Figma component](https://www.figma.com/file/ACL6YK2Hmdjq4jGk7hH07g/Twitzy?type=design&node-id=0%3A1&mode=design&t=Z61EcatZ4EHNu68U-1)
-- [Figma Typography](https://www.figma.com/file/ACL6YK2Hmdjq4jGk7hH07g/Twitzy?type=design&node-id=21%3A63&mode=design&t=Z61EcatZ4EHNu68U-1)
-- [Figma Color](https://www.figma.com/file/ACL6YK2Hmdjq4jGk7hH07g/Twitzy?type=design&node-id=11%3A36&mode=design&t=Z61EcatZ4EHNu68U-1)
-
-**Client side**:
-
-- Zod
-- Redux toolkit
-- Styled-Component
-- ShadCN/ui
-- Storybook
-- react query
-
-**Server side**:
-
-- Prisma
-- Supabase
-- Socket.io
+- UI - [Figma](https://www.figma.com/file/ACL6YK2Hmdjq4jGk7hH07g/Twitzy?type=design)
 
 # Project Structure
 
@@ -30,7 +11,3 @@
 `/prisma/` Prisma schema
 
 `/public/` Assets
-
-# VSCode Helpers
-
-- `\/\*NOTE:remove\*\/ console\.log\((.|\n)*?\);?` match all loggers with `/*NODE:remove*/` as suffix.

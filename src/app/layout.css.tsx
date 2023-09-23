@@ -1,12 +1,12 @@
-import tw, { styled, screen } from 'twin.macro';
+'use client';
 
-import { THEME } from '@/styles';
+import tw from 'twin.macro';
+import styled from 'styled-components';
 
 const MAX_WIDTH = '1920px';
 
 export const Container = styled.div`
-  width: 100%;
-  height: 100%;
+  ${tw`wh-full`}
 
   @media (max-width: ${MAX_WIDTH}) {
     display: flex;
@@ -15,37 +15,19 @@ export const Container = styled.div`
 `;
 
 export const Wrapper = styled.div`
-  width: 100%;
-  height: 100%;
+  ${tw`
+    wh-full relative overflow-hidden grid
+    xl:(grid-cols-[300px 1fr])
+    xl-max:(grid-cols-[100px 1fr])
+    sm-max:(grid-cols-[1fr])
+  `}
+
   max-width: ${MAX_WIDTH};
-
-  overflow: hidden;
-  display: grid;
-
-  ${screen`sm`(tw`
-      placeholder:(accent-amber-100 hover:bg-black)
-  `)}
-
-  @media ${THEME.SCREENS.XL} {
-    grid-template-columns: 400px 1fr;
-  }
-  @media ${THEME.SCREENS.XL_MAX} {
-    grid-template-columns: 100px 1fr;
-  }
 `;
 
-export const MainSection = styled.main`
-  width: 100%;
-  height: fit-content;
-  min-height: 100vh;
-  max-height: 100vh;
-
-  overflow-y: auto; // fallback
-  overflow-y: overlay;
+export const MainSection = tw.main`
+  w-full h-fit min-h-full max-h-full
+  overflow-auto overflow-overlay
 `;
 
-export const SideSection = styled.aside`
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-`;
+export const SideSection = tw.aside`wh-full overflow-hidden`;
