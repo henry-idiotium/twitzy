@@ -26,8 +26,9 @@ export const Wrapper = styled.div`
 `;
 
 export const MainSection = tw.main`
-  w-full h-fit min-h-full max-h-full
+  w-full min-h-full max-h-full
   overflow-auto overflow-overlay
+  px-1
 `;
 
 export const SideSection = tw.aside`wh-full overflow-hidden`;

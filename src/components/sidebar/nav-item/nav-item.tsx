@@ -2,7 +2,8 @@
 
 import { Container, DisplayText, IconWrapper, Wrapper } from './nav-item.css';
 
-import { useBoolean } from 'react-use';
+import { theme } from 'twin.macro';
+import { useBoolean, useMedia } from 'react-use';
 import { useEffect } from 'react';
 import { usePathname } from 'next/navigation';
 import Link, { LinkProps } from 'next/link';
