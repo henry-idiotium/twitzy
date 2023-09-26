@@ -15,9 +15,9 @@ const navItems: NavItemProps[] = [
 ];
 
 export function Sidebar() {
-  const isHidden = useMedia(`(max-width: ${theme`screens.sm`})`);
+  const isHidden = useMedia(`(max-width: ${theme`screens.sm`})`, false);
 
-  if (isHidden) return <></>;
+  if (isHidden) return <>sidebar hidden</>;
 
   return (
     <Container>

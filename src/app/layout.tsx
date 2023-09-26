@@ -1,4 +1,4 @@
-import { Container, MainSection, SideSection, Wrapper } from './layout.css';
+import { Container, MainSection, SideSection, Wrapper } from './root.css';
 
 import { cookies } from 'next/headers';
 import { Metadata } from 'next';

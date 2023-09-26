@@ -13,6 +13,9 @@ export const IconWrapper = tw.div`
 `;
 
 export const DisplayText = styled.span<{ $active?: boolean }>((props) => [
-  tw`font-semibold text-xl`,
   props.$active ? tw`text-cyan-700` : '',
+  tw`
+    font-semibold text-xl
+    xl-max:(hidden)
+  `,
 ]);
