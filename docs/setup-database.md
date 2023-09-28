@@ -10,19 +10,13 @@
 2. Startup/setup local supabase.
 
 ```bash
-bun sp:dev
+> bun sp:dev
 ```
 
 3. Apply prisma current migrations to local DB
 
-> [NOTE] Note: Run command bellow on repo fresh start, **NOT** while dev.
+> [NOTE] Note: Run command bellow while dev or on repo fresh start, **NOT** while dev.
 
 ```bash
-bun pm:mig
-```
-
-or full command,
-
-```bash
-doppler run "bunx prisma migrate dev --skip-generate"
+> bun pm:mig
 ```

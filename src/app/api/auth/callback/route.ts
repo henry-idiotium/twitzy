@@ -11,7 +11,7 @@ export const dynamic = 'force-dynamic';
 export const GET = api(async (request) => {
   const requestUrl = new URL(request.url);
   const code = requestUrl.searchParams.get('code');
-  /*NOTE:remove*/ console.log('[LOG (653665)] \n', code);
+  /*NOTE:remove*/ console.log('[LOG (653665)] \n', { code });
 
   if (code) {
     const supabase = createRouteHandlerClient<Database>({ cookies });
