@@ -37,7 +37,7 @@
       }
     ],
 
-    "react/no-unknown-property": ["error", { "ignore": ["css", "tw"] }],
+    "react/no-unknown-property": ["error", { "ignore": ["css", "jsx", "global"] }],
     "react-hooks/exhaustive-deps": "off",
     "react/display-name": "off",
     "react/no-children-prop": "off",

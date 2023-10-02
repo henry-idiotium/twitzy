@@ -1,5 +1,5 @@
 import { StoryObj } from '@storybook/react';
-import Sidebar from './index';
+import { Sidebar } from './sidebar';
 import { Meta } from '@storybook/react';
 
 const meta: Meta<typeof Sidebar> = {

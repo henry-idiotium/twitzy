@@ -1,5 +1,3 @@
-export {};
-
 declare global {
   namespace NodeJS {
     interface ProcessEnv extends AppEnv {}
@@ -13,8 +11,8 @@ type AppEnv = {
   APP_NAME: string;
   NEXT_PUBLIC_APP_NAME: string;
 
-  DARK_MODE_COOKIE_KEY: string;
-  NEXT_PUBLIC_DARK_MODE_COOKIE_KEY: string;
+  THEME_COOKIE_KEY: string;
+  NEXT_PUBLIC_THEME_COOKIE_KEY: string;
   THEME_TARGET_ELEMENT: string;
   NEXT_PUBLIC_THEME_TARGET_ELEMENT: string;
   THEME_ATTR_KEY: string;
@@ -27,3 +25,5 @@ type AppEnv = {
   PROD: boolean;
   TEST: boolean;
 };
+
+export {};

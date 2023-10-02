@@ -1,22 +1,22 @@
 'use client';
-
-import tw from 'twin.macro';
 import * as React from 'react';
 import { forwardRef } from 'react';
 
-const StyledInput = tw.input`
-  flex h-10 w-full px-3 py-2
-  rounded-md border border-input
-  bg-background text-sm ring-offset-background
-  placeholder:text-muted-foreground
-  file:(border-0 bg-transparent font-medium)
-  focus-visible:(outline-none ring-2 ring-ring ring-offset-2)
-  disabled:(cursor-not-allowed opacity-50)
-`;
+import cn from '@/utils/cn';
 
 export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {}
 
-export const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => (
-  <StyledInput ref={ref} {...props} />
-));
+export const Input = forwardRef<HTMLInputElement, InputProps>(
+  ({ className, type, ...props }, ref) => (
+    <input
+      ref={ref}
+      type={type}
+      className={cn(
+        'flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50',
+        className,
+      )}
+      {...props}
+    />
+  ),
+);
 Input.displayName = 'Input';

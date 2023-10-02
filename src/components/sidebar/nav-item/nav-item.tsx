@@ -1,12 +1,10 @@
 'use client';
 
-import { Container, DisplayText, IconWrapper, Wrapper } from './nav-item.css';
-
-import { theme } from 'twin.macro';
-import { useBoolean, useMedia } from 'react-use';
+import { useBoolean } from 'react-use';
 import { useEffect } from 'react';
 import { usePathname } from 'next/navigation';
 import Link, { LinkProps } from 'next/link';
+import cn from 'clsx';
 import { Icon } from '@phosphor-icons/react';
 
 export type NavItemProps = (React.Attributes & LinkProps) & {
@@ -28,15 +26,21 @@ export function NavItem(props: NavItemProps) {
 
   return (
     <Link {..._props}>
-      <Container>
-        <Wrapper>
-          <IconWrapper>
+      <div className="w-full pl-4 py-2">
+        <div className="flex gap-4 items-center">
+          <div className="flex gap-4 items-center wh-8 [&>*]:wh-full [&>*]:stroke-0">
             <Icon weight={isActive ? 'fill' : 'regular'} />
-          </IconWrapper>
+          </div>
 
-          <DisplayText $active={isActive}>{displayName}</DisplayText>
-        </Wrapper>
-      </Container>
+          <div
+            className={cn('font-semibold text-xl xl-max:hidden', {
+              'text-cyan-700': isActive,
+            })}
+          >
+            {displayName}
+          </div>
+        </div>
+      </div>
     </Link>
   );
 }

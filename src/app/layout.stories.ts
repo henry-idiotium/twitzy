@@ -3,7 +3,7 @@ import Layout from './layout';
 import { Meta } from '@storybook/react';
 
 const meta: Meta<typeof Layout> = {
-  title: 'layout/root',
+  title: 'layout/app',
   component: Layout,
 };
 export default meta;

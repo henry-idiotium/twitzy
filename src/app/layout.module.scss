@@ -1,0 +1,34 @@
+$max-width: 1920px;
+
+.container {
+  @apply wh-full;
+
+  @media (max-width: #{$max-width}) {
+    @apply flex justify-center;
+  }
+}
+
+.wrapper {
+  max-width: $max-width;
+  @apply wh-full relative overflow-hidden grid;
+
+  @screen xl {
+    @apply grid-cols-[300px_1fr];
+  }
+  @screen xl-max {
+    @apply grid-cols-[100px_1fr];
+  }
+  @screen sm-max {
+    @apply grid-cols-[1fr];
+  }
+}
+
+.main-section {
+  @apply w-full min-h-full max-h-full
+    overflow-auto overflow-overlay
+    px-1;
+}
+
+.side-section {
+  @apply wh-full overflow-hidden;
+}

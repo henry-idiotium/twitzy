@@ -29,8 +29,8 @@ const preview: Preview = {
         dynamicTitle: true,
         showName: true,
         items: [
-          { value: 'dark', left: '⚫️', title: 'Dark' },
-          { value: 'light', left: '⚪️', title: 'Light' },
+          { value: 'dark', title: 'Dark' },
+          { value: 'light', title: 'Light' },
         ],
       },
     },

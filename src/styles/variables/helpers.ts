@@ -1,48 +1,29 @@
-/**
- * Convert `{ [key:string]: string }` object to CSS variable string and tailwind config.
- * @returns CSS variables in **string** and **tailwind config object**
- */
-export function createCSSVariables<Schema extends GenericDict<string | number>>(schema: Schema) {
-  const tailwindConfig: GenericDict<string> = {};
+const CSS_VARIABLE_PREFIX = '--'; // e.g., --app-{key}
+const convertToCSSVariable = (key: string) => `${CSS_VARIABLE_PREFIX}${key}`;
+const convertToTailwindColorValue = (cssVar: string) => `hsl(var(${cssVar}) / <alpha-value>)`;
 
-  const cssStr = Object.entries(schema).reduce((cssStr, [key, value]) => {
-    const varName = getCSSVarName(key);
-    supplyTailwindConfig(tailwindConfig, key, varName);
-    return cssStr + `${varName}: ${value};`;
-  }, '');
+type ColorThemeStyle = { dark: GenericDict<string>; root: GenericDict<string> };
 
-  return [cssStr, tailwindConfig] as const;
-}
+/** Create theme variables and tailwind config objects. */
+export function createThemeCSSVariables(
+  schema: GenericDict<GenericDict<string | [root: string, dark: string]>>,
+) {
+  const tailwindConfig: GenericDict<GenericDict<string>> = {};
+  const styles: ColorThemeStyle = { dark: {}, root: {} };
 
-/**
- * Convert `{ [key:string]: [root, dark] }` object to tailwind config and theme CSS strings.
- * @returns CSS variables in **string** and **tailwind config object**
- */
-export function createThemeCSSVariables<
-  ColorSchema extends GenericDict<[root: string, dark: string]>,
->(schema: ColorSchema) {
-  const tailwindConfig: GenericDict<string> = {};
-  let root = '';
-  let dark = '';
+  for (const [themeName, themeConfig] of Object.entries(schema)) {
+    tailwindConfig[themeName] = {};
 
-  for (const [key, [rootValue, darkValue]] of Object.entries(schema)) {
-    const varName = getCSSVarName(key);
+    for (const [varName, value] of Object.entries(themeConfig)) {
+      const [rootValue, darkValue] = typeof value == 'string' ? [value] : value;
+      const cssVar = convertToCSSVariable(varName);
 
-    supplyTailwindConfig(tailwindConfig, key, varName);
+      styles.root[cssVar] = rootValue;
+      darkValue && (styles.dark[cssVar] = darkValue);
 
-    root += `${varName}: ${rootValue};`;
-    dark += `${varName}: ${darkValue};`;
+      tailwindConfig[themeName][varName] = convertToTailwindColorValue(cssVar);
+    }
   }
 
-  return [{ root, dark }, tailwindConfig] as const;
-}
-
-/** Supply key-value config to tailwind config object. */
-function supplyTailwindConfig(config: GenericDict<string>, keyName: string, cssVarName: string) {
-  config[keyName] = `hsl(var(${cssVarName}) / <alpha-value>)`;
-}
-
-const cssPrefix = '--'; // e.g., --app-{key}
-function getCSSVarName(key: string) {
-  return `${cssPrefix}-${key}`;
+  return [styles, tailwindConfig] as const;
 }

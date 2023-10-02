@@ -1,15 +1,14 @@
-//NOTE: import directly, avoid import index namespace to avoid slow tailwind loading
-import { colorTailwindConfig, radiusTailwindConfig } from './src/styles/variables';
+import { tailwindConfig } from './src/styles/variables';
 import { ruleExtends } from './src/lib/tailwind';
 
 import { Config } from 'tailwindcss';
 
-const config: Config = {
+export default {
   content: ['./src/**/*.{js,ts,jsx,tsx}'],
+  plugins: [ruleExtends],
   theme: {
     extend: {
-      colors: colorTailwindConfig,
-      borderRadius: radiusTailwindConfig,
+      ...tailwindConfig,
       screens: {
         '2xl': '1536px',
         xl: '1280px',
@@ -26,7 +25,4 @@ const config: Config = {
       },
     },
   },
-  plugins: [ruleExtends],
-};
-
-export default config;
+} satisfies Config;

@@ -2,7 +2,6 @@
 
 import { LoginForm, loginFormSchema } from './(types)';
 
-import tw from 'twin.macro';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useEffect } from 'react';
 import Link from 'next/link';
@@ -11,11 +10,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 
 import { Database } from '@/types';
 import { useFrom } from '@/hooks';
-import { Button, Input } from '@/components/ui';
-
-const Container = tw.div`wh-full`;
-const Wrapper = tw.div`max-w-[400px]`;
-const LabelWrapper = tw.div`pb-2`;
+// import { Button, Input } from '@/components/ui';
 
 export default function SignIn() {
   const [from, goToFrom] = useFrom();
@@ -23,7 +18,7 @@ export default function SignIn() {
   const supabase = createClientComponentClient<Database>();
 
   const {
-    register,
+    // register,
     handleSubmit,
     formState: { errors },
   } = useForm<LoginForm>({ resolver: zodResolver(loginFormSchema) });
@@ -44,40 +39,40 @@ export default function SignIn() {
   };
 
   return (
-    <Container>
-      <Wrapper>
-        <form method="post" tw="flex flex-col gap-4" onSubmit={handleSubmit(onSubmit)}>
+    <div className="wh-full">
+      <div className="max-w-[400px]">
+        <form method="post" className="flex flex-col gap-4" onSubmit={handleSubmit(onSubmit)}>
           <div>
-            <LabelWrapper>
-              <label htmlFor="email" tw="mr-3">
+            <div className="pb-2">
+              <label htmlFor="email" className="mr-3">
                 Email
               </label>
               {errors.email && <p>{errors.email.message}</p>}
-            </LabelWrapper>
+            </div>
 
-            <Input placeholder="Email" id="email" type="email" {...register('email')} />
+            {/* <Input placeholder="Email" id="email" type="email" {...register('email')} /> */}
           </div>
 
           <div>
-            <LabelWrapper>
-              <label htmlFor="password" tw="mr-3">
+            <div className="pb-2">
+              <label htmlFor="password" className="mr-3">
                 Password
               </label>
               {errors.password && <p>{errors.password.message}</p>}
-            </LabelWrapper>
+            </div>
 
-            <Input id="password" placeholder="Password" type="password" {...register('password')} />
+            {/* <Input id="password" placeholder="Password" type="password" {...register('password')} /> */}
           </div>
 
-          <Link href={`/register?from=${from}`} tw="underline">
+          <Link href={`/register?from=${from}`} className="underline">
             Create an account
           </Link>
 
-          <Button type="submit" variant="secondary" tw="mt-5">
+          {/* <Button type="submit" variant="secondary" className="mt-5">
             Sign in
-          </Button>
+          </Button> */}
         </form>
-      </Wrapper>
-    </Container>
+      </div>
+    </div>
   );
 }

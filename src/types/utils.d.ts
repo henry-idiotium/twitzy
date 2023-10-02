@@ -1,5 +1,3 @@
-export {};
-
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import '@total-typescript/ts-reset';
 
@@ -15,3 +13,5 @@ declare global {
 
   type NotFn<T> = T extends AnyFn ? never : T;
 }
+
+export {};

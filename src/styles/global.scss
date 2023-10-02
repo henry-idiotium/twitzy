@@ -1,0 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  @apply wh-full box-border bg-background text-foreground overflow-hidden;
+}
+
+* {
+  @apply border-border;
+}

@@ -19,7 +19,13 @@
     "experimentalDecorators": true,
     "outDir": ".dist",
     "paths": { "@/*": ["src/*"] },
-    "plugins": [{ "name": "next" }]
+    "plugins": [
+      { "name": "next" },
+      {
+        "name": "typescript-plugin-css-modules",
+        "options": { "classnameTransform": "camelCaseOnly" }
+      }
+    ]
   },
 
   "include": [

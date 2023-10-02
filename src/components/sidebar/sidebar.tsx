@@ -1,9 +1,6 @@
 'use client';
-import { Container, NavContainer } from './sidebar.css';
 import { NavItem, NavItemProps } from './nav-item/nav-item';
 
-import { theme } from 'twin.macro';
-import { useMedia } from 'react-use';
 import * as Icon from '@phosphor-icons/react';
 
 const navItems: NavItemProps[] = [
@@ -15,17 +12,16 @@ const navItems: NavItemProps[] = [
 ];
 
 export function Sidebar() {
-  const isHidden = useMedia(`(max-width: ${theme`screens.sm`})`, false);
-
-  if (isHidden) return <>sidebar hidden</>;
+  // const isHidden = useMedia(`(max-width: ${theme`screens.sm`})`, false);
+  // if (isHidden) return <>sidebar hidden</>;
 
   return (
-    <Container>
-      <NavContainer>
+    <div className="wh-full flex flex-col justify-center bg-red-500">
+      <div className="flex flex-col gap-2 bg-red-500">
         {navItems.map((args, index) => (
           <NavItem key={args.displayName + index} {...args} />
         ))}
-      </NavContainer>
-    </Container>
+      </div>
+    </div>
   );
 }

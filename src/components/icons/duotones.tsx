@@ -1,8 +1,9 @@
 'use client';
 import { DueToneIconProps } from './types';
 
-import tw from 'twin.macro';
 import * as React from 'react';
+
+import cn from '@/utils/cn';
 
 export const HomeIcon = FaIconWithDuotoneFactory({
   svgViewBox: '0 0 576 512',
@@ -26,9 +27,6 @@ export const CommentsIcon = FaIconWithDuotoneFactory({
 
 // ---------------
 // Factory
-const SecondaryPath = tw.path`opacity-40`;
-const StyledSvg = tw.svg`wh-12 fill-foreground`;
-
 type FaIconProps = (DueToneIconProps & React.ComponentProps<'svg'>) & { duetone?: true };
 type FactoryArgs = {
   svgViewBox?: string;
@@ -38,16 +36,21 @@ type FactoryArgs = {
 };
 function FaIconWithDuotoneFactory(args: FactoryArgs) {
   const { svgViewBox = '0 0 512 512', wholePath, primaryPath, secondaryPath } = args;
-  return ({ duetone, cssPrimary, cssSecondary, ...props }: FaIconProps) => (
-    <StyledSvg xmlns="http://www.w3.org/2000/svg" viewBox={svgViewBox} {...props}>
+  return ({ duetone, primaryClassName, secondaryClassName, className, ...props }: FaIconProps) => (
+    <svg
+      className={cn(className, 'wh-12 fill-foreground')}
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox={svgViewBox}
+      {...props}
+    >
       {duetone ? (
         <>
-          <path css={cssPrimary} d={primaryPath} />
-          <SecondaryPath css={cssSecondary} d={secondaryPath} />
+          <path className={primaryClassName} d={primaryPath} />
+          <path className={cn('opacity-40', secondaryClassName)} d={secondaryPath} />
         </>
       ) : (
         <path d={wholePath} />
       )}
-    </StyledSvg>
+    </svg>
   );
 }
